@@ -1,0 +1,41 @@
+[
+  {
+    "symbolicName": "annotations",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "02828555fb52ebec1b5652478df2c7cc3dc6e84b",
+    "jarFileModificationDate": "2013-11-17T20:06:22.232-08:00",
+    "location": "C:\\Users\\Matt\\android-sdks\\tools\\support\\annotations.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "android-support-v4",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "4a6be13368bb64c5a0b0460632d228a1a915f58f",
+    "jarFileModificationDate": "2013-11-17T20:42:41.645-08:00",
+    "location": "C:\\Users\\Matt\\Documents\\COMP380\\android_advising_system\\Advisement_System\\libs\\android-support-v4.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "android",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "5ad8ede41493307ce2991a10abfe5350a5f57b7f",
+    "jarFileModificationDate": "2013-11-17T20:16:07.901-08:00",
+    "location": "C:\\Users\\Matt\\android-sdks\\platforms\\android-14\\android.jar",
+    "javaRuntime": false
+  }
+]
