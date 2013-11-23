@@ -1,5 +1,5 @@
 package com.goldteam.advisement_system;
-
+//
 public class CourseInfo {
 	String name;
 	int units;
