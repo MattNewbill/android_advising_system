@@ -4,7 +4,7 @@ package com.goldteam.advisement_system;
 
 
 import java.util.Vector;
-
+import java.util.Iterator;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,28 +16,21 @@ import java.util.*;
 
 
 public class ClassPlanner extends Activity{
-	///using userDefine class CourseInfo to create an object
-	CourseInfo myCourse=new CourseInfo("Comp 333",3, "Fall");
-	String chingada=myCourse.getName();
 	
+	
+	//content variables
 	Vector<CourseInfo> remainingCourses= new Vector<CourseInfo>();
 	Planner startPlanning;
-	
+	Vector<Semester> mySemesters=new Vector<Semester>();
 
-	
-	
-	
-	//variable
-	String courses="";
-	String[] semester={"Comp 380", "Math341", "Comp 333", "Comp 310"};
-	String course;
+	//GUI variables
 	Button plannerDisplay;
 	TextView displayCourses;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
-		//Vector of remaining classes
+		//populating vector of remaining classes
 		remainingCourses.addElement(new CourseInfo("Comp 310", 3, "Spring"));
 		remainingCourses.addElement(new CourseInfo("Comp 450", 3, "Spring"));
 		remainingCourses.addElement(new CourseInfo("Comp 484", 3, "Spring"));
@@ -49,6 +42,7 @@ public class ClassPlanner extends Activity{
 		remainingCourses.addElement(new CourseInfo("Comp 341",  3, "Fall"));
 		
 		startPlanning=new Planner(remainingCourses);//using constructor to pass remaining courses to Planner class
+		
 		
 		
 		
@@ -69,12 +63,28 @@ public class ClassPlanner extends Activity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				//change  the display view
-				//for(int i=0; i<4; i++){
-					//Display 4 courses
-					//courses=courses+"\n"+ semester[i];
-				//}
-				//displayCourses.setText("Fall Semester\n" + courses);
-				displayCourses.setText("Fall Semester\n" + chingada);
+			
+				String results="";
+				String graduation="";
+				mySemesters=startPlanning.automaticSemesterScheduling();//store the collection of semester return by automatic...
+				//iterate through each semesters
+				for (Semester eachSemester : mySemesters){
+					
+					
+					results+="\n"+eachSemester.getName()+"\n"; //adding the semester information to our display variable
+			
+					
+				    //iterating through the courses that make up the current semester
+					for(CourseInfo myCourse: eachSemester.getCourseThatMakeASemester()){
+						
+						results+= myCourse.getName()+"\n";//adding the classes that make up the current semester to the display variable
+						
+						
+					}
+					graduation=eachSemester.getName();	
+					
+			}
+				displayCourses.setText("Your projected graduation year: "+ graduation +"\n"+results+"\n");//display semester to the app.
 				
 			}
 		});
