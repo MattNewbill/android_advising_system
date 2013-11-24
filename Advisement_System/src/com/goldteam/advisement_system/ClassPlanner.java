@@ -32,14 +32,14 @@ public class ClassPlanner extends Activity{
 		
 		//populating vector of remaining classes
 		remainingCourses.addElement(new CourseInfo("Comp 310", 3, "Spring"));
-		remainingCourses.addElement(new CourseInfo("Comp 450", 3, "Spring"));
+		remainingCourses.addElement(new CourseInfo("Comp 450", 3, "Fall"));
 		remainingCourses.addElement(new CourseInfo("Comp 484", 3, "Spring"));
 		remainingCourses.addElement(new CourseInfo("Comp 424", 3, "Spring"));
 		
 		remainingCourses.addElement(new CourseInfo("Math 481A", 3, "Fall"));
-		remainingCourses.addElement(new CourseInfo("Comp 429",  3, "Fall"));
+		remainingCourses.addElement(new CourseInfo("Comp 429",  3, "Spring"));
 		remainingCourses.addElement(new CourseInfo("Comp 410",  3, "Fall"));
-		remainingCourses.addElement(new CourseInfo("Comp 341",  3, "Fall"));
+		remainingCourses.addElement(new CourseInfo("Comp 341",  2, "Spring"));
 		
 		startPlanning=new Planner(remainingCourses);//using constructor to pass remaining courses to Planner class
 		
@@ -84,7 +84,7 @@ public class ClassPlanner extends Activity{
 					graduation=eachSemester.getName();	
 					
 			}
-				displayCourses.setText("Your projected graduation year: "+ graduation +"\n"+results+"\n");//display semester to the app.
+				displayCourses.setText("Your projected graduation: "+ graduation +"\n"+results+"\n");//display semester to the app.
 				
 			}
 		});
