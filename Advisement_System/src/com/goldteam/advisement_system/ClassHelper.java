@@ -1,6 +1,7 @@
 package com.goldteam.advisement_system;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,11 +12,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import com.goldteam.advisement_system.R;
-import com.goldteam.advisement_system.R.id;
-import com.goldteam.advisement_system.R.layout;
-
 public class ClassHelper extends Activity{
+	
+	final public String EXTRA_MAJOR_ID = "com.goldteam.advisement_system.MAJOR_ID";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +32,12 @@ public class ClassHelper extends Activity{
 		majorListView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 	                int position, long id) {
+				//Grab which major was clicked pressed
 				Major clickedMajor = (Major) parent.getItemAtPosition(position);
-				Toast.makeText(getBaseContext(), clickedMajor.getName(), Toast.LENGTH_LONG).show();
+				//Create intent to get to course selector passing the majorId
+				Intent courseIntent = new Intent(ClassHelper.this, CourseSelector.class);
+				courseIntent.putExtra(EXTRA_MAJOR_ID, clickedMajor.getId());
+				startActivity(courseIntent);
 	        }
 	    });
 	}
@@ -48,10 +51,6 @@ public class ClassHelper extends Activity{
 		majors.add(new Major(2, "Underwater Basket Weaving", 123, new ArrayList<Requirement>()));
 		majors.add(new Major(3, "Useless Liberal Arts Degree", 123, new ArrayList<Requirement>()));
 		return majors;
-		
-	}
-	
-	public void onListItemClick(ListView l, View v, int position, long id){
 		
 	}
 }
