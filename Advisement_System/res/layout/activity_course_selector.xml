@@ -16,11 +16,11 @@
         android:layout_height="wrap_content"
         android:text="@string/select_courses"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-    
-    <ListView
-        android:id="@+id/listView1"
+
+    <ExpandableListView
+        android:id="@+id/expandableListView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-    </ListView>
+    </ExpandableListView>
 
 </LinearLayout>

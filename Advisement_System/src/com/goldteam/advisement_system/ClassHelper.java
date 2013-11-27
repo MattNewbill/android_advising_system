@@ -8,13 +8,13 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class ClassHelper extends Activity{
 	
-	final public String EXTRA_MAJOR_ID = "com.goldteam.advisement_system.MAJOR_ID";
+	
+	final public static String EXTRA_MAJOR_ID = "com.goldteam.advisement_system.MAJOR_ID";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
