@@ -21,7 +21,7 @@ public class ClassPlanner extends Activity{
 	String chingada=myCourse.getName();
 	
 	Vector<CourseInfo> remainingCourses= new Vector<CourseInfo>();
-	Planner startPlanning;
+	//Planner startPlanning;
 	
 
 	
@@ -48,7 +48,7 @@ public class ClassPlanner extends Activity{
 		remainingCourses.addElement(new CourseInfo("Comp 410",  3, "Fall"));
 		remainingCourses.addElement(new CourseInfo("Comp 341",  3, "Fall"));
 		
-		startPlanning=new Planner(remainingCourses);//using constructor to pass remaining courses to Planner class
+		//startPlanning=new Planner(remainingCourses);//using constructor to pass remaining courses to Planner class
 		
 		
 		
