@@ -58,8 +58,10 @@ public class Major {
 		System.out.println("Units Required: "+getUnitsRequired());
 	}
 	
-	
-	
-	
+	@Override
+	public String toString(){
+		//To work with the ArrayAdapter.
+		return this.name;
+	}
 
 }
