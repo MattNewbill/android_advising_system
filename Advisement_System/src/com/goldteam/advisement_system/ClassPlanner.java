@@ -12,6 +12,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import java.util.*;
 
+import com.goldteam.advisement_system.R;
+import com.goldteam.advisement_system.R.id;
+import com.goldteam.advisement_system.R.layout;
+
 
 
 

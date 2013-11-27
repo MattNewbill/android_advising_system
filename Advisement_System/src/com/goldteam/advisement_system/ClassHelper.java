@@ -11,6 +11,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import com.goldteam.advisement_system.R;
+import com.goldteam.advisement_system.R.id;
+import com.goldteam.advisement_system.R.layout;
+
 public class ClassHelper extends Activity{
 
 	@Override
@@ -25,7 +29,14 @@ public class ClassHelper extends Activity{
 		ArrayAdapter<Major> adp = new ArrayAdapter<Major>(this, android.R.layout.simple_list_item_1, majors);
 		majorListView.setAdapter(adp);
 		
-
+		//List click callback
+		majorListView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view,
+	                int position, long id) {
+				Major clickedMajor = (Major) parent.getItemAtPosition(position);
+				Toast.makeText(getBaseContext(), clickedMajor.getName(), Toast.LENGTH_LONG).show();
+	        }
+	    });
 	}
 	
 	private ArrayList<Major> getMajors(){
