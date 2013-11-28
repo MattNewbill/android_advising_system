@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
@@ -15,14 +16,24 @@ import android.widget.ExpandableListView;
 public class CourseSelector extends Activity {
 
 	private ExpandableListView expList;
+	private CourseExpandableListAdapter adp;
 	
+	//I want to eventually populate the expandable list like this:
+			/*
+			 * Requirement
+			 * 	Course
+			 * 	Course
+			 * Requirement
+			 * 	Course... etc
+			 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.d("CourseSelector", "onCreate");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_course_selector);
 		// Show the Up button in the action bar.
 		setupActionBar();
-		//Initialize global references
+		//Initialize views
 		expList = (ExpandableListView)findViewById(R.id.expandableListView1);
 		//Get the intent passing the Major's ID.
 		Intent intent = getIntent();
@@ -31,7 +42,8 @@ public class CourseSelector extends Activity {
 			//Do some error checking here
 		}
 		Major major = getMajorWithRequirements(majorId);
-		populateListView(major);
+		adp = new CourseExpandableListAdapter(this, major.getRequirements());
+		expList.setAdapter(adp);
 	}
 	
 	private Major getMajorWithRequirements(int id){
@@ -49,17 +61,6 @@ public class CourseSelector extends Activity {
 		reqs.add(req);
 		Major major = new Major(1, "Computer Science", 123, reqs);
 		return major;
-	}
-	
-	private void populateListView(Major major){
-		//I want to eventually populate the expandable list like this:
-		/*
-		 * Requirement
-		 * 	Course
-		 * 	Course
-		 * Requirement
-		 * 	Course... etc
-		 */
 	}
 	
 
