@@ -41,37 +41,46 @@ public class CourseExpandableListAdapter extends BaseExpandableListAdapter {
 	
 	public CourseExpandableListAdapter(Context context, ArrayList<Requirement> requirements) {
 		this.inflater = LayoutInflater.from(context);
-		this.reqs = requirements;
+		this.reqs = new ArrayList<Requirement>();
 		courses = new ArrayList<ArrayList<Course>>();
 		//Populate courses (the children of the requirements)
 		//This implementation assumes unique courses for now.
 		for(int i = 0; i < reqs.size(); i++){
 			Requirement req = reqs.get(i);
-			//Keep the number of ArrayList<Course>s in sync with Requirements.
-			courses.add(new ArrayList<Course>());
-			//The subrequirements each contain different courses
-			//Insert all the courses into the expandable lists under the requirements.
-			for(SubRequirement subReq : req.getSubRequirements()) {
-				ArrayList<Course> subReqCourses = subReq.getCourses();
-				courses.get(i).addAll(subReqCourses);
-			}
+			//Add requirements
+			this.addRequirement(req);
 		}
 	}
 	
 	/**
 	 * Adds a requirement to the list. The requirement should have all its subrequirements already.
 	 * However, the method does not check if any subrequirements exist.
+	 * <p>
+	 * Will throw a NullPointerException if the Requirement is null but it will not throw an exception
+	 * if any of the fields of the Requirement are null. Ignores nulls in the courses.
 	 * 
 	 * @param req A requirement which contains all its required courses.
 	 */
 	public void addRequirement(Requirement req) {
-		reqs.add(req);
-		int reqPosition = reqs.size() - 1;
+		int reqPosition = reqs.size();
+		//Keep the number of ArrayList<Course>s in sync with Requirements.
 		courses.add(new ArrayList<Course>());
-		for(SubRequirement subReq : req.getSubRequirements()) {
-			ArrayList<Course> subReqCourses = subReq.getCourses();
-			courses.get(reqPosition).addAll(subReqCourses);
+		//Fail here if req is null
+		if(req.getSubRequirements() != null){
+			for(SubRequirement subReq : req.getSubRequirements()) {
+				//The sub-requirements each contain different courses
+				//Insert all the courses into the expandable lists under the requirements.
+				ArrayList<Course> subReqCourses = subReq.getCourses();
+				for(Course course : subReqCourses) {
+					//Ignore null values.
+					if(course != null) {
+						courses.get(reqPosition).add(course);
+					}
+				}
+			}
 		}
+		//Only add the requirement if the above was successful
+		reqs.add(req);
 	}
 	
 	/**
@@ -93,6 +102,12 @@ public class CourseExpandableListAdapter extends BaseExpandableListAdapter {
 	}
 
 	@Override
+	/**
+	 * Gets child for a particular Requirement. Will throw an OutOfBoundsException.
+	 * 
+	 * @param groupPosition The position of the Requirement.
+	 * @param childPosition The position of the Course.
+	 */
 	public Object getChild(int groupPosition, int childPosition) {
 		ArrayList<Course> reqCourses = courses.get(groupPosition);
 		Course gotCourse = reqCourses.get(childPosition);
