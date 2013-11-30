@@ -41,6 +41,7 @@ public class CourseSelector extends Activity {
 		if(majorId == -1) {
 			//Do some error checking here
 		}
+		//Grab the major from the database
 		Major major = getMajorWithRequirements(majorId);
 		adp = new CourseExpandableListAdapter(this, major.getRequirements());
 		expList.setAdapter(adp);

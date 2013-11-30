@@ -2,7 +2,6 @@ package com.goldteam.advisement_system;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,9 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.CheckedTextView;
 import android.widget.TextView;
-import android.widget.Toast;
 /**
  * This class is used to put the requirements and courses into the expandable list.
  * The expandable list looks like this:

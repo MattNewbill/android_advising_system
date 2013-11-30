@@ -34,6 +34,7 @@ public class CourseExpandableListAdapterTest extends AndroidTestCase {
 		}
 		//Make sure that the null was not entered
 		assertEquals(1,  adp.getGroupCount());
+		//Enter requirements with children
 		ArrayList<SubRequirement> subreqs = new ArrayList<SubRequirement>();
 		ArrayList<Course> courses = new ArrayList<Course>();
 		Course course1 = new Course();
@@ -50,8 +51,12 @@ public class CourseExpandableListAdapterTest extends AndroidTestCase {
 		assertEquals(2, adp.getGroupCount());
 		//Were 2 children (not including the null) entered?
 		assertEquals(2, adp.getChildrenCount(1));
+		//Is course1 the first child?
 		assertEquals(course1, adp.getChild(1, 0));
+		//Was the second child the null?
 		assertFalse(adp.getChild(1, 1) == null);
+		//Did we add the Requirement to group?
+		assertEquals(toAdd, adp.getGroup(1));
 	}
 	
 	@Test
@@ -67,10 +72,13 @@ public class CourseExpandableListAdapterTest extends AndroidTestCase {
 		subreqs.add(subreq);
 		Requirement toAdd = new Requirement();
 		toAdd.setSubRequirements(subreqs);
+		toAdd.setName("COMP 100");
 		adp.addRequirement(toAdd);
 		//Check the group view is a TextView
 		View view = adp.getGroupView(0, false, null, null);
 		assertEquals(TextView.class, view.getClass());
+		String text = ((TextView) view).getText().toString();
+		assertTrue(text.equals("COMP 100"));
 		//Check the child view is a TextView
 		view = adp.getChildView(0, 0, false, null, null);
 		assertEquals(TextView.class, view.getClass());
