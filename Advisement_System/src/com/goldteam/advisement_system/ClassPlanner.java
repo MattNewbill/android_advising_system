@@ -36,7 +36,7 @@ public class ClassPlanner extends Activity{
 		
 		
 		//populating vector of remaining classes
-		//remainingCourses.addElement(new CourseInfo("Comp 310", 3, "Spring"));
+		remainingCourses.addElement(new CourseInfo("Comp 310", 3, "Spring"));
 		/*remainingCourses.addElement(new CourseInfo("Comp 450", 3, "Fall"));
 		remainingCourses.addElement(new CourseInfo("Comp 484", 3, "Spring"));
 		remainingCourses.addElement(new CourseInfo("Comp 424", 3, "Spring"));
