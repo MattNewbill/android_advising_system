@@ -30,16 +30,18 @@ public class ClassPlanner extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
+		
+		
 		//populating vector of remaining classes
-		remainingCourses.addElement(new CourseInfo("Comp 310", 3, "Spring"));
-		remainingCourses.addElement(new CourseInfo("Comp 450", 3, "Fall"));
+		//remainingCourses.addElement(new CourseInfo("Comp 310", 3, "Spring"));
+		/*remainingCourses.addElement(new CourseInfo("Comp 450", 3, "Fall"));
 		remainingCourses.addElement(new CourseInfo("Comp 484", 3, "Spring"));
 		remainingCourses.addElement(new CourseInfo("Comp 424", 3, "Spring"));
 		
 		remainingCourses.addElement(new CourseInfo("Math 481A", 3, "Fall"));
 		remainingCourses.addElement(new CourseInfo("Comp 429",  3, "Spring"));
 		remainingCourses.addElement(new CourseInfo("Comp 410",  3, "Fall"));
-		remainingCourses.addElement(new CourseInfo("Comp 341",  2, "Spring"));
+		remainingCourses.addElement(new CourseInfo("Comp 341",  2, "Spring"));*/
 		
 		startPlanning=new Planner(remainingCourses);//using constructor to pass remaining courses to Planner class
 		
@@ -66,7 +68,12 @@ public class ClassPlanner extends Activity{
 			
 				String results="";
 				String graduation="";
-				mySemesters=startPlanning.automaticSemesterScheduling();//store the collection of semester return by automatic...
+				mySemesters=startPlanning.automated_SemesterScheduling();//store the collection of semester return by automatic...
+				
+				if(mySemesters.isEmpty()){
+					displayCourses.setText("Your have no classes to take.\n Perhaps you should start with the Class helper\n");//display semester to the app.
+				}
+				else{
 				//iterate through each semesters
 				for (Semester eachSemester : mySemesters){
 					
@@ -85,8 +92,9 @@ public class ClassPlanner extends Activity{
 					
 			}
 				displayCourses.setText("Your projected graduation: "+ graduation +"\n"+results+"\n");//display semester to the app.
-				
 			}
+			}
+				
 		});
 	}
 

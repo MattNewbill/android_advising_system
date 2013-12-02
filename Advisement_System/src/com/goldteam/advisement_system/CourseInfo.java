@@ -1,9 +1,9 @@
 package com.goldteam.advisement_system;
 //
 public class CourseInfo {
-	String name;
-	int units;
-	String availability;
+	String name="";
+	int units=0;
+	String availability="";
 	
 	public CourseInfo(String name, int units, String availability) {
 		super();

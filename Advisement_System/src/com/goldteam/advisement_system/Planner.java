@@ -1,83 +1,76 @@
 package com.goldteam.advisement_system;
 
 import java.util.Vector;
-import java.util.Iterator;
 
 
 public class Planner {
-	
-	int MaxUnits=11;
-	
-	Vector<CourseInfo> remainingClasses=new Vector<CourseInfo>(); //holds collection of remaining classes
-	
-	Vector<Semester> semesters=new Vector<Semester>(); //holds a collection of semester objects.
-	
+
+	int MaxUnits = 11;                                          // sets the unit cap for each semester
+
+	Vector<CourseInfo> remainingClasses = new Vector<CourseInfo>(); // holds collection of courseInfo objects
+
+	Vector<Semester> semesters = new Vector<Semester>();        // holds a collection of semester objects.
+
 	Semester creatingSemester;
-	
-	//get all the remaining classes 
+
+	//initialize remainingClasses vector
 	public Planner(Vector<CourseInfo> remainingClasses) {
 		super();
-		this.remainingClasses = remainingClasses;//keeps all the classes that remain to be taken.
-		System.out.println(remainingClasses.get(0).name);
+		this.remainingClasses = remainingClasses;
+													
 	}
-	public Vector<Semester> automaticSemesterScheduling(){
-		int baseYear=2013;
-		int counter=0; 
+	//method systematically arranges courseInfo objects into semesters
+	public Vector<Semester> automated_SemesterScheduling() {
+		int baseYear = 2013;  //base year for semesters
+		int counter = 0;  //use to alternate between Spring and Fall term
 		String term;
-		
-		
-		Iterator it=remainingClasses.iterator();//to iterate through all the class in remainingClasses vector
-		
-		
-		//populating semesters until we run out of classes
-		while(!remainingClasses.isEmpty())
-		{
-			//alternating between terms
-			if((counter % 2)==0)//if counter is even, then it is Spring semester
-				term="Spring";
+
+
+		// populating semesters until we run out of classes(CourseInfo objects)
+		while (!remainingClasses.isEmpty()) {
+			// alternating between terms
+			if ((counter % 2) == 0)// if counter is even, then it is a Spring semester
+									
+				term = "Spring";
 			else
-			    term="Fall";
-			
-			//incrementing the year when the term is Spring
-			if(term.equals("Spring"))
-				  baseYear++;
-			
-			//making a semester	
-			creatingSemester=new Semester(String.valueOf(baseYear),term); //instantiating a semester
-			counter++;//helps alternate between terms
-			//allows only to add class if we have not reach the max number of units
-			//gives up when the units exceed total number units
-			
-			
-			for(CourseInfo classItem: remainingClasses){
-				if(classItem.availability.equals(term))
-				{
-					if( (creatingSemester.getTotalUnits()+classItem.getUnits()) <=MaxUnits)
-					{
+				term = "Fall";
+
+			// incrementing the year when the term is Spring
+			if (term.equals("Spring"))
+				baseYear++;
+
+			// making a semester
+			creatingSemester = new Semester(String.valueOf(baseYear), term); 
+
+			counter++;// alternates between terms
+
+			// iterating through each class(courseInfo objects) in the vector of remaining classes that needs to be taken
+			for (CourseInfo classItem : remainingClasses) {
+				
+				// check that the class is offered in the same semester that we are populating
+				if (classItem.getAvailability().equals(term)) { 
+					
+					// check that adding the current class(CourseInfo object) will not exceed the unit cap
+					if ((creatingSemester.getTotalUnits() + classItem
+							.getUnits()) <= MaxUnits) { 
+						// adding the class(CourseInfo object) because it is both offered in the right term and doesn't exceed the semester units maximum
 						creatingSemester.addClasses(classItem);
-						
 					}
-						
 				}
-				
 			}
-			for(CourseInfo classRemove: creatingSemester.getCourseThatMakeASemester()){
-				
+			//removing the classes(CourseInfo objects) that we added to a semester from our vector of remainingClasses.
+			//This can't be done during the initial run due to concurrent modification exceptions
+			for (CourseInfo classRemove : creatingSemester
+					.getCourseThatMakeASemester()) {
+
 				remainingClasses.remove(classRemove);
 			}
 			
-			/*while( (it.hasNext()) && ((creatingSemester.getTotalUnits()+remainingClasses.get(0).getUnits())<=MaxUnits)){
-				creatingSemester.addClasses(remainingClasses.remove(0));//adding classes to spring 2014 semester
-				
-			}*/
-			
-			semesters.add(creatingSemester); //adding a semester to my collection 
-
-	    }
-			
-			return semesters;
-		
+			semesters.add(creatingSemester); // adding a populated semester to my collection of semesters
+		}
+		return semesters;
 	}
-	
 
 }
+
+

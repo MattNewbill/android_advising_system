@@ -2,9 +2,9 @@ package com.goldteam.advisement_system;
 import java.util.Vector;
 //semester arranges classes
 public class Semester {
-	String year;
-	String term;
-	String name;
+	String year="";
+	String term="";
+	String name="";
 	int totalUnits=0;
 	
 	//a semester has a list of courses
@@ -18,10 +18,10 @@ public class Semester {
 		
 	}
 	
-	public void addClasses(CourseInfo addClass){
-		courseThatMakeASemester.add(addClass); //add a class
+	public void addClasses(CourseInfo class1){
+		courseThatMakeASemester.add(class1); //add a class
 		
-		totalUnits+=addClass.units; //add number of units of the added course to the total number of units
+		totalUnits+=class1.units; //add number of units of the added course to the total number of units
 		
 		
 	}
