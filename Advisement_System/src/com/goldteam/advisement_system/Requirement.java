@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Requirement {
 	int id; //This is the id of a requirement in order check that each requirement has been met.
-	String name;
-	String description;
-	int unitRequired;
+	String name;	//The name of the requirement
+	String description;	//A brief description of the requirement
+	int unitRequired;	//Units required in order to pass the requirement
 	boolean isGERequirement;
-	ArrayList <SubRequirement> subRequirements;
+	ArrayList <SubRequirement> subRequirements; //This can be subject to change, but is an array list of sub Requirement objects
 	
 	public Requirement() {
 		super();
@@ -22,6 +22,7 @@ public class Requirement {
 		this.unitRequired = unitRequired;
 		this.subRequirements = subRequirements;
 	}
+	//These are getter and setters in which other classes and methods can use
 	public int getId() {
 		return id;
 	}
@@ -52,6 +53,7 @@ public class Requirement {
 	public void setSubRequirements(ArrayList<SubRequirement> subRequirements) {
 		this.subRequirements = subRequirements;
 	}
+	//Test method to display the information of the sub requirement
 	public void print() {
 		System.out.println("Requirement: "+getName());
 		System.out.println("ID: "+getId());

@@ -3,9 +3,9 @@ package com.goldteam.advisement_system;
 import java.util.ArrayList;
 
 public class Major {
-	int id;
-	String name;
-	int unitsRequired;
+	int id;	//a unique id for each major
+	String name;  //name of the major
+	int unitsRequired;	//units required for the major
 	ArrayList <Requirement> Requirements;
 	
 	public Major() {
@@ -20,7 +20,7 @@ public class Major {
 		this.unitsRequired = units;
 		this.Requirements = requirements;	
 	}
-
+//from here down are getters and setters so other classes or methods can call these variables
 	public int getId() {
 		return id;
 	}
@@ -52,6 +52,7 @@ public class Major {
 	public void setRequirements(ArrayList<Requirement> requirements) {
 		Requirements = requirements;
 	}
+	//test is a test method in order to display a major's information
 	public void print() {
 		System.out.println("Major: "+getName());
 		System.out.println("ID: "+getId());

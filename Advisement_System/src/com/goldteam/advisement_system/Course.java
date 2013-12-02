@@ -1,17 +1,17 @@
 package com.goldteam.advisement_system;
 
 public class Course {
-	int id;
-	String name;
-	String description;
-	int unit;
-	boolean isCompleted;
+	int id;		// unique id for each course
+	String name;	//name of course
+	String description;	// A brief description of the course
+	int unit;	//number of units this course is
+	boolean isCompleted;	//boolean value to check if course has been passed
 	
 	public Course() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	//Constructor
 	public Course(int id, String name, String description, int unit) {
 		super();
 		this.id = id;
@@ -20,7 +20,7 @@ public class Course {
 		this.unit = unit;
 		isCompleted = false;
 	}
-
+	// from here down are getters and setters so other classes and method use
 	public int getUnit() {
 		return unit;
 	}
@@ -60,6 +60,7 @@ public class Course {
 	public void setCompleted(boolean isCompleted) {
 		this.isCompleted = isCompleted;
 	}
+	//test method to display a information on the course
 	public void print() {
 		System.out.println("Course: "+getName());
 		System.out.println("ID: "+getId());
