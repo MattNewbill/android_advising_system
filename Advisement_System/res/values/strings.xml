@@ -7,5 +7,6 @@
     <string name="select_major">Please select your major</string>
     <string name="title_activity_class_selector">ClassSelector</string>
     <string name="select_courses">Please select the courses you have taken that satisfy this major\'s requirements</string>
+    <string name="submit_courses">Plan my semester!</string>
 
 </resources>

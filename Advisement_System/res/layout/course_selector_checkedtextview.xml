@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:textSize="18sp"
     android:paddingLeft="30dp" 
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
     android:checkMark="?android:attr/listChoiceIndicatorMultiple"
     android:textAppearance="?android:attr/textAppearanceLarge"
     >
