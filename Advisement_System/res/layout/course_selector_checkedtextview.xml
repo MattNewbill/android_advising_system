@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/course_selector_checkedtextview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:textSize="18sp"
+    android:paddingLeft="30dp" 
+    android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    >
+    
+
+</CheckedTextView>

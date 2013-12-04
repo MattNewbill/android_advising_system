@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
+import android.widget.ListView;
 
 public class CourseSelector extends Activity {
 
@@ -35,6 +36,7 @@ public class CourseSelector extends Activity {
 		setupActionBar();
 		//Initialize views
 		expList = (ExpandableListView)findViewById(R.id.expandableListView1);
+		expList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		//Get the intent passing the Major's ID.
 		Intent intent = getIntent();
 		int majorId = intent.getIntExtra(ClassHelper.EXTRA_MAJOR_ID, -1);

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.CheckedTextView;
 import android.widget.TextView;
 /**
  * This class is used to put the requirements and courses into the expandable list.
@@ -42,8 +43,8 @@ public class CourseExpandableListAdapter extends BaseExpandableListAdapter {
 		courses = new ArrayList<ArrayList<Course>>();
 		//Populate courses (the children of the requirements)
 		//This implementation assumes unique courses for now.
-		for(int i = 0; i < reqs.size(); i++){
-			Requirement req = reqs.get(i);
+		for(int i = 0; i < requirements.size(); i++){
+			Requirement req = requirements.get(i);
 			//Add requirements
 			this.addRequirement(req);
 		}
@@ -125,10 +126,10 @@ public class CourseExpandableListAdapter extends BaseExpandableListAdapter {
 		Course tempCourse = tempChild.get(childPosition);
 		//Put the children in textViews
 		if(convertView == null) {
-			convertView = inflater.inflate(android.R.layout.simple_list_item_1, null);
+			convertView = inflater.inflate(R.layout.course_selector_checkedtextview, null);
 		}
 		String courseName = tempCourse.getName();
-		((TextView) convertView).setText(courseName);
+		((CheckedTextView) convertView).setText(courseName);
 		//Set as tag for click callback to retrieve the object
 		convertView.setTag(tempCourse);
 		convertView.setOnClickListener(new OnClickListener() {
@@ -169,7 +170,7 @@ public class CourseExpandableListAdapter extends BaseExpandableListAdapter {
 			View convertView, ViewGroup parent) {
 		//Make convertView be a simple_list_item
 		if (convertView == null) {
-		   convertView = inflater.inflate(android.R.layout.simple_list_item_1, null);
+		   convertView = inflater.inflate(R.layout.course_selector_textview, null);
 		}
 		((TextView) convertView).setText(reqs.get(groupPosition).getName());
 		return convertView;
