@@ -136,7 +136,9 @@ public class CourseExpandableListAdapter extends BaseExpandableListAdapter {
 		   @Override
 		   //Listener just logs the name of the string to LogCat
 		public void onClick(View v) {
+			   CheckedTextView checkView = (CheckedTextView) v;
 			   Course course = (Course) v.getTag();
+			   checkView.setChecked(!checkView.isChecked());
 			   Log.d("CourseExpandableListAdapter", course.toString());
 		   }
 		});
