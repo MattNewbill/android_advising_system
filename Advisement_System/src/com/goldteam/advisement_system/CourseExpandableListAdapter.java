@@ -1,6 +1,7 @@
 package com.goldteam.advisement_system;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.content.Context;
 import android.util.Log;
@@ -34,6 +35,8 @@ public class CourseExpandableListAdapter extends BaseExpandableListAdapter {
 	private ArrayList<Requirement> reqs;
 	//The position of the ArrayList corresponds to the requirements that the arraylist is associated to
 	private ArrayList<ArrayList<Course>> courses;
+	//Ties the courses to the CheckedTextView to get whether they were selected or not.
+	private HashMap<Course, CheckedTextView> coursesSelected;
 	//Used to expand the Views in the List.
 	private LayoutInflater inflater;
 	
@@ -41,6 +44,7 @@ public class CourseExpandableListAdapter extends BaseExpandableListAdapter {
 		this.inflater = LayoutInflater.from(context);
 		this.reqs = new ArrayList<Requirement>();
 		courses = new ArrayList<ArrayList<Course>>();
+		coursesSelected = new HashMap<Course, CheckedTextView>();
 		//Populate courses (the children of the requirements)
 		//This implementation assumes unique courses for now.
 		for(int i = 0; i < requirements.size(); i++){
@@ -123,15 +127,17 @@ public class CourseExpandableListAdapter extends BaseExpandableListAdapter {
 			boolean isLastChild, View convertView, ViewGroup parent) {
 		//Retrieve the child requested
 		ArrayList<Course> tempChild = courses.get(groupPosition);
-		Course tempCourse = tempChild.get(childPosition);
+		Course course = tempChild.get(childPosition);
 		//Put the children in textViews
 		if(convertView == null) {
 			convertView = inflater.inflate(R.layout.course_selector_checkedtextview, null);
 		}
-		String courseName = tempCourse.getName();
+		String courseName = course.getName();
 		((CheckedTextView) convertView).setText(courseName);
 		//Set as tag for click callback to retrieve the object
-		convertView.setTag(tempCourse);
+		convertView.setTag(course);
+		//Put the convertView in the HashMap.
+		this.coursesSelected.put(course, (CheckedTextView)convertView);
 		convertView.setOnClickListener(new OnClickListener() {
 		   @Override
 		//Check or uncheck the box.
@@ -165,12 +171,11 @@ public class CourseExpandableListAdapter extends BaseExpandableListAdapter {
 			selected.add(newReq);
 			//The courses related to this requirement
 			ArrayList<Course> reqCourses = courses.get(i);
-			int noOfCourses = reqCourses.size();
-			for(int j = 0; j < noOfCourses; j++) {
-				CheckedTextView checkView = (CheckedTextView) this.getChildView(i, j, false, null, null);
-				if(checkView.isChecked()) {
+			for(Course course : reqCourses) {
+				CheckedTextView checkView = coursesSelected.get(course);
+				if(checkView != null && checkView.isChecked()) {
 					//Add in the selected course
-					courseContainer.getCourses().add(reqCourses.get(j));
+					courseContainer.getCourses().add(course);
 				}
 			}
 		}
