@@ -134,7 +134,7 @@ public class CourseExpandableListAdapter extends BaseExpandableListAdapter {
 		convertView.setTag(tempCourse);
 		convertView.setOnClickListener(new OnClickListener() {
 		   @Override
-		   //Listener just logs the name of the string to LogCat
+		//Check or uncheck the box.
 		public void onClick(View v) {
 			   CheckedTextView checkView = (CheckedTextView) v;
 			   Course course = (Course) v.getTag();
@@ -143,6 +143,38 @@ public class CourseExpandableListAdapter extends BaseExpandableListAdapter {
 		   }
 		});
 		return convertView;
+	}
+	
+	public ArrayList<Requirement> getSelected(){
+		ArrayList<Requirement> selected = new ArrayList<Requirement>();
+		int noOfReqs = reqs.size();
+		//Scan through each requirement and find which courses were selected
+		for(int i = 0; i < noOfReqs; i++) {
+			//The current requirement from the field
+			Requirement currReq = reqs.get(i);
+			//This contains the courses that were selected
+			Requirement newReq = currReq.copy();
+			//This will hold our single SubRequirement which holds all the courses.
+			//I'm not separating them out by SubRequirement yet. Too messy.
+			ArrayList<SubRequirement> subreqWrapper = new ArrayList<SubRequirement>();
+			//Selected courses
+			SubRequirement courseContainer = new SubRequirement();
+			courseContainer.setCourses(new ArrayList<Course>());
+			subreqWrapper.add(courseContainer);
+			newReq.setSubRequirements(subreqWrapper);
+			selected.add(newReq);
+			//The courses related to this requirement
+			ArrayList<Course> reqCourses = courses.get(i);
+			int noOfCourses = reqCourses.size();
+			for(int j = 0; j < noOfCourses; j++) {
+				CheckedTextView checkView = (CheckedTextView) this.getChildView(i, j, false, null, null);
+				if(checkView.isChecked()) {
+					//Add in the selected course
+					courseContainer.getCourses().add(reqCourses.get(j));
+				}
+			}
+		}
+		return selected;
 	}
 
 	@Override
@@ -170,7 +202,6 @@ public class CourseExpandableListAdapter extends BaseExpandableListAdapter {
 	@Override
 	public View getGroupView(int groupPosition, boolean isExpanded,
 			View convertView, ViewGroup parent) {
-		//Make convertView be a simple_list_item
 		if (convertView == null) {
 		   convertView = inflater.inflate(R.layout.course_selector_textview, null);
 		}

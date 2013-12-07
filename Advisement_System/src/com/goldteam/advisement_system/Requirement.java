@@ -61,6 +61,10 @@ public class Requirement {
 		System.out.println("Units Required: "+getUnitRequired());
 	}
 	
-	
+	public Requirement copy(){
+		Requirement copy = new Requirement(id, name, description, unitRequired, subRequirements);
+		copy.isGERequirement = this.isGERequirement;
+		return copy;
+	}
 
 }

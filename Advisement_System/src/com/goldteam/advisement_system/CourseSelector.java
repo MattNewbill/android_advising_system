@@ -11,6 +11,9 @@ import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 
@@ -18,6 +21,7 @@ public class CourseSelector extends Activity {
 
 	private ExpandableListView expList;
 	private CourseExpandableListAdapter adp;
+	private Button submitBtn;
 	
 	//I want to eventually populate the expandable list like this:
 			/*
@@ -35,6 +39,7 @@ public class CourseSelector extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		//Initialize views
+		submitBtn = (Button)findViewById(R.id.button1);
 		expList = (ExpandableListView)findViewById(R.id.expandableListView1);
 		expList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		//Get the intent passing the Major's ID.
@@ -47,6 +52,16 @@ public class CourseSelector extends Activity {
 		Major major = getMajorWithRequirements(majorId);
 		adp = new CourseExpandableListAdapter(this, major.getRequirements());
 		expList.setAdapter(adp);
+	}
+	
+	public void sendSelected(View v){
+		ArrayList<Requirement> selected = adp.getSelected();
+		for(Requirement req : selected){
+			Log.d("CourseSelector", req.getName());
+			for(Course c : req.getSubRequirements().get(0).getCourses()) {
+				Log.d("CourseSelector", c.getName());
+			}
+		}
 	}
 	
 	private Major getMajorWithRequirements(int id){
