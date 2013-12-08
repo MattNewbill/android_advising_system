@@ -56,12 +56,6 @@ public class CourseSelector extends Activity {
 	
 	public void sendSelected(View v){
 		ArrayList<Requirement> selected = adp.getSelected();
-		for(Requirement req : selected){
-			Log.d("CourseSelector", req.getName());
-			for(Course c : req.getSubRequirements().get(0).getCourses()) {
-				Log.d("CourseSelector", c.getName());
-			}
-		}
 	}
 	
 	private Major getMajorWithRequirements(int id){
