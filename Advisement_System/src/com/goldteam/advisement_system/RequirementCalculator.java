@@ -29,9 +29,23 @@ public class RequirementCalculator {
 	public ArrayList<Requirement> trimUnavailableReqs(ArrayList<Requirement> reqs){
 		ArrayList<Requirement> newReqs = new ArrayList<Requirement>();
 		for(Requirement req : reqs){
-			
+			boolean available;
+			for(SubRequirement subReq : req.subRequirements){
+				for(Course course : subReq.courses) {
+					
+				}
+			}
 		}
 		return newReqs;
+	}
+	
+	public boolean isCourseTaken(Course course){
+		for(Course took : taken){
+			if(course.id == took.id){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	//untested
