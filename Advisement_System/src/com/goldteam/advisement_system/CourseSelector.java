@@ -60,6 +60,7 @@ public class CourseSelector extends Activity {
 	
 	private Major getMajorWithRequirements(int id){
 		//Make test case for now
+		ArrayList<Requirement> reqs = new ArrayList<Requirement>();
 		ArrayList<Course> tempCourses = new ArrayList<Course>();
 		Course temp = new Course(0, "COMP 380", "", 3);
 		tempCourses.add(temp);
@@ -69,7 +70,49 @@ public class CourseSelector extends Activity {
 		ArrayList<SubRequirement> subreqs = new ArrayList<SubRequirement>();
 		subreqs.add(subreq);
 		Requirement req = new Requirement(0, "COMP 380", "", 4, subreqs);
-		ArrayList<Requirement> reqs = new ArrayList<Requirement>();
+		reqs.add(req);
+		subreqs = new ArrayList<SubRequirement>();
+		tempCourses = new ArrayList<Course>();
+		tempCourses.add(new Course(1, "COMP 110", "", 3));
+		tempCourses.add(new Course(1, "COMP 110/L", "", 3));
+		subreq = new SubRequirement();
+		subreq.setCourses(tempCourses);
+		subreqs.add(subreq);
+		req = new Requirement(0, "COMP 110", "", 4, subreqs);
+		reqs.add(req);
+		subreqs = new ArrayList<SubRequirement>();
+		tempCourses = new ArrayList<Course>();
+		tempCourses.add(new Course(1, "MATH 150A", "", 3));
+		subreq = new SubRequirement();
+		subreq.setCourses(tempCourses);
+		subreqs.add(subreq);
+		req = new Requirement(0, "MATH 150A", "", 4, subreqs);
+		reqs.add(req);
+		subreqs = new ArrayList<SubRequirement>();
+		tempCourses = new ArrayList<Course>();
+		tempCourses.add(new Course(1, "COMP 122", "", 3));
+		tempCourses.add(new Course(1, "COMP 122/L", "", 3));
+		subreq = new SubRequirement();
+		subreq.setCourses(tempCourses);
+		subreqs.add(subreq);
+		req = new Requirement(0, "COMP 122", "", 4, subreqs);
+		reqs.add(req);
+		subreqs = new ArrayList<SubRequirement>();
+		tempCourses = new ArrayList<Course>();
+		tempCourses.add(new Course(1, "COMP 182", "", 3));
+		tempCourses.add(new Course(1, "COMP 182/L", "", 3));
+		subreq = new SubRequirement();
+		subreq.setCourses(tempCourses);
+		subreqs.add(subreq);
+		req = new Requirement(0, "COMP 182", "", 4, subreqs);
+		reqs.add(req);
+		subreqs = new ArrayList<SubRequirement>();
+		tempCourses = new ArrayList<Course>();
+		tempCourses.add(new Course(1, "PHIL 230", "", 3));
+		subreq = new SubRequirement();
+		subreq.setCourses(tempCourses);
+		subreqs.add(subreq);
+		req = new Requirement(0, "PHIL 230", "", 4, subreqs);
 		reqs.add(req);
 		Major major = new Major(1, "Computer Science", 123, reqs);
 		return major;

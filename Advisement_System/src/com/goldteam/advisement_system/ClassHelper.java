@@ -49,7 +49,7 @@ public class ClassHelper extends Activity{
 		majors.add(new Major(0, "Computer Science", 123, new ArrayList<Requirement>()));
 		majors.add(new Major(1, "Math", 123, new ArrayList<Requirement>()));
 		majors.add(new Major(2, "Underwater Basket Weaving", 123, new ArrayList<Requirement>()));
-		majors.add(new Major(3, "Useless Liberal Arts Degree", 123, new ArrayList<Requirement>()));
+		majors.add(new Major(3, "History", 123, new ArrayList<Requirement>()));
 		return majors;
 		
 	}
